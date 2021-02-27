@@ -89,7 +89,7 @@ export default {
 
 .dataTable {
   width: 80%;
-  right: 0;
+  left: 25%;
   top: 10%;
   position: absolute;
   transform: translate(-10%);
