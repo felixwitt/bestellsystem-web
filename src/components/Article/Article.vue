@@ -8,8 +8,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Suchen "
-        single-line
+        label="Suchen"
         hide-details
       ></v-text-field>
     </v-card-title>
@@ -51,7 +50,7 @@ export default {
   methods: {
     getArticles() {
       this.items = []
-      axios.get("http://localhost:8081/api/article/").then((response) => {
+      axios.get( process.env.BESTELLSYSTEMREST + "/api/article/").then((response) => {
         response.data.forEach((item) => {
           this.newItem = []
           this.newItem.artnr = item.artikelnummer

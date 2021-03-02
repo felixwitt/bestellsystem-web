@@ -24,7 +24,7 @@ export default {
   mounted() {
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
-        this.$router.push('/order/new')
+        this.$router.push('/article')
       }
     })
   },
@@ -36,11 +36,7 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(() => {
           this.$router.push("/order/new");
-          this.loginfailed = false;
         })
-        .catch(() => {
-          this.loginfailed = true;
-        });
     }
   }
 };

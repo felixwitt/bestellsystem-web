@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <div class="navbarContainer">
-      <NavBar></NavBar>
-    </div>
-    <v-data-table class="dataTable" :headers="headers" :items="customerDetails" hide-default-footer></v-data-table>
-  </div>
+  <v-app>
+    <v-main>
+      <div class="navbarContainer">
+        <NavBar></NavBar>
+      </div>
+      <v-data-table class="dataTable" :headers="headers" :items="customerDetails" hide-default-footer></v-data-table>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -61,7 +63,7 @@ export default {
   methods: {
     getCusomerInfo() {
       axios
-          .get("http://localhost:8081/api/customer/", {
+          .get(process.env.BESTELLSYSTEMREST + "/api/customer/", {
             params: {
               email: firebase.auth().currentUser.email
             }

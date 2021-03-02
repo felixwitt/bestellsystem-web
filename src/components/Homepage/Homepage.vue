@@ -51,7 +51,7 @@ export default {
     getArticle() {
       this.items = [];
       axios
-        .get("http://localhost:8081/api/article/" + this.articleNumber)
+        .get(process.env.BESTELLSYSTEMREST +"/api/article/" + this.articleNumber)
         .then(response => {
           this.items = [];
           this.items.push(response.data);
@@ -68,11 +68,12 @@ export default {
     },
 
     order() {
-        console.log(this.shoppingCard)
       axios
-        .post("http://localhost:8081/api/customer/neworder/", this.shoppingCard)
-        .then(response => {
-          console.log(response);
+        .post(process.env.BESTELLSYSTEMREST + "/api/order/new/", this.shoppingCard)
+        .then(() => {
+          this.items = []
+          this.shoppingCard = []
+          this.price = 0
         })
         .catch(error => {
           console.log(error);
