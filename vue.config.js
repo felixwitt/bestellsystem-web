@@ -5,5 +5,8 @@ module.exports = {
   ],
   configureWebpack: {
     plugins: [new Dotenv()]
+  },
+  devServer: {
+    disableHostCheck: true
   }
 }
