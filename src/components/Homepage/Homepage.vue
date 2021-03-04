@@ -10,7 +10,7 @@
       <template v-slot:top>
         <h3 id="dataTableTitle">Warenkorb</h3>
         <v-spacer></v-spacer>
-        <div id="price">Gesamtpreis: {{price}}€</div>
+        <div id="price">Gesamtpreis: {{ price }}€</div>
       </template>
     </v-data-table>
 
@@ -21,6 +21,7 @@
 <script>
 import axios from "axios";
 import firebase from "firebase";
+
 export default {
   name: "AppBar",
 
@@ -35,8 +36,8 @@ export default {
           sortable: false,
           value: "artikelnummer"
         },
-        { text: "Artikelbezeichnung", value: "artikelbezeichnung", sortable: false },
-        { text: "Preis", value: "kosten", sortable: false }
+        {text: "Artikelbezeichnung", value: "artikelbezeichnung", sortable: false},
+        {text: "Preis", value: "kosten", sortable: false}
       ],
 
       items: [],
@@ -51,11 +52,11 @@ export default {
     getArticle() {
       this.items = [];
       axios
-        .get(process.env.BESTELLSYSTEMREST +"/api/article/" + this.articleNumber)
-        .then(response => {
-          this.items = [];
-          this.items.push(response.data);
-        });
+          .get(process.env.BESTELLSYSTEMREST + "/api/article/" + this.articleNumber)
+          .then(response => {
+            this.items = [];
+            this.items.push(response.data);
+          });
     },
 
     addToShoppingCard() {
@@ -69,15 +70,15 @@ export default {
 
     order() {
       axios
-        .post(process.env.BESTELLSYSTEMREST + "/api/order/new/", this.shoppingCard)
-        .then(() => {
-          this.items = []
-          this.shoppingCard = []
-          this.price = 0
-        })
-        .catch(error => {
-          console.log(error);
-        });
+          .post(process.env.BESTELLSYSTEMREST + "/api/order/new/", this.shoppingCard)
+          .then(() => {
+            this.items = []
+            this.shoppingCard = []
+            this.price = 0
+          })
+          .catch(error => {
+            console.log(error);
+          });
     }
   },
 
